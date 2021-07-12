@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1>todo</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-6">
+        <h5>task todo</h5>
+               <form method="post">
+    {% csrf_token %}
+  <div>
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" name="name" aria-describedby="name">
+
+  </div>
+   <div> <label class="form-label">priority</label>
+    <input type="text" class="form-control" name="priority">
+  </div>
+  <div> <label class="form-label">date</label>
+    <input type="date" class="form-control" name="date">
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit</button><br>
+
+   </form>
+
+
+
+
+    </div>
+    <div class="col-md-6">
+        <h3>hello</h3>
+        {% for i in obj %}
+        <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.priority}}</p>
+        <p class="card-text" style="color:grey"><i>added on {{i.date}}</i></p>
+        <a href="{% url 'delete' i.id %}" class="btn btn-danger">delete</a>
+        <a href="{% url 'update' i.id %}" class="btn btn-primary">update</a>
+
+    </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+    </div>
+
+
+{% endblock %}
+
+
